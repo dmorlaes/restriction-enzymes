@@ -83,7 +83,7 @@ public class LinkStrand implements IDnaStrand{
 
 
 
-        
+
     }
 
     @Override
