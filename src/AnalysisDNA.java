@@ -25,7 +25,7 @@ public class AnalysisDNA {
      */
 	private static final String strandType = "StringStrand";
 //    private static final String strandType = "LinkStrand";
-//	private static final String strandType = "StringBuilderStrand";
+    //private static final String strandType = "StringBuilderStrand";
 
     private static final String ENZYME = "gaattc";
     private static final int TRIALS = 2;
@@ -113,11 +113,16 @@ public class AnalysisDNA {
         // characters, by simply appending copy to myStrand each time the loop iterates
         // This will increase the number of breaks in mySource linearly, by the number
         // of breaks in copy
-
         String copy = mySource;
-        String results = strandSpliceBenchmark(ENZYME, splicee, strandType);
-        System.out.println(results);
+        for (int i = 0; i < 10; i++) {
+
+
+            mySource += copy;
+            String results = strandSpliceBenchmark(ENZYME, splicee, strandType);
+            System.out.println(results);
+        }
 
         System.exit(0);
+
     }
 }
