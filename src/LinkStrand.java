@@ -76,6 +76,7 @@ public class LinkStrand implements IDnaStrand {
             ls.myFirst.next = ls.myFirst;
             ls.myFirst =  revNode;
             ls.myAppend++;
+            list = list.next;
         }
         return ls;
 
