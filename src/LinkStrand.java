@@ -28,7 +28,7 @@ public class LinkStrand implements IDnaStrand {
     private Node myFirst, myLast;
     private long mySize;
     private int myAppend;
-    private int myIndex;
+    private long myIndex;
     private int myLocalIndex;
     private Node myCurrent;
 
@@ -81,7 +81,7 @@ public class LinkStrand implements IDnaStrand {
         }
         return ls;
     }
-// I LOVE ASTRACHAN
+
     @Override
     public int getAppendCount() {
         return myAppend;
