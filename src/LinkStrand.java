@@ -28,7 +28,7 @@ public class LinkStrand implements IDnaStrand {
     private Node myFirst, myLast;
     private long mySize;
     private int myAppend;
-    private int myIndex;
+    private long myIndex;
     private int myLocalIndex;
     private Node myCurrent;
 
@@ -67,8 +67,6 @@ public class LinkStrand implements IDnaStrand {
     @Override
     public IDnaStrand reverse() {
         Node list = myFirst;
-        //ArrayList<String> arr = new ArrayList<>();
-        //arr.add(n.info);
         LinkStrand ls = new LinkStrand();
         while (list != null) {
             StringBuilder reverse = new StringBuilder(list.info);
@@ -79,12 +77,10 @@ public class LinkStrand implements IDnaStrand {
             ls.myFirst =  revNode;
             ls.myAppend++;
         }
-
-
         return ls;
 
     }
-// I LOVE ASTRACHAN
+
     @Override
     public int getAppendCount() {
         return myAppend;
