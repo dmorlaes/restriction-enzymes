@@ -79,7 +79,17 @@ public class LinkStrand implements IDnaStrand {
             ls.myFirst =  revNode;
             ls.myAppend++;
         }
+<<<<<<< HEAD
+
+        return ;
+
+
+
+
+
+=======
         return ls;
+>>>>>>> 7e81830fc4eb0d9be1cefe86894b41334dbfa49e
     }
 
     @Override
