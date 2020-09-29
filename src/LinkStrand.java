@@ -1,14 +1,15 @@
-//I don't want freinds, I want audis"
+//I don't want friends, I want audis"
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+//Dmitri Morales
+//Ritvik Janamsetty
 
-public class LinkStrand implements IDnaStrand{
+public class LinkStrand implements IDnaStrand {
 
     public LinkStrand(String s) {
-        initialize (s);
+        initialize(s);
     }
-    public LinkStrand(){
+
+    public LinkStrand() {
         this("");
 
     }
@@ -16,15 +17,20 @@ public class LinkStrand implements IDnaStrand{
     private class Node {
         String info;
         Node next;
-        public Node (String s) {
+
+        public Node(String s) {
             info = s;
             next = null;
 
         }
     }
+
     private Node myFirst, myLast;
     private long mySize;
     private int myAppend;
+    private int myIndex;
+    private int myLocalIndex;
+    private Node myCurrent;
 
 
     @Override
@@ -38,18 +44,20 @@ public class LinkStrand implements IDnaStrand{
         myLast = myFirst;
         mySize = myFirst.info.length();
         myAppend = 0;
+        myIndex = 0;
+        myLocalIndex = 0;
+        myCurrent = myFirst;
 
     }
 
     @Override
     public IDnaStrand getInstance(String source) {
-
         return new LinkStrand(source);
     }
 
     @Override
     public IDnaStrand append(String dna) {
-        myLast.next = new Node (dna);
+        myLast.next = new Node(dna);
         myLast = myLast.next;
         mySize += myLast.info.length();
         myAppend++;
@@ -58,25 +66,20 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public IDnaStrand reverse() {
-        Node n = myFirst;
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add(n.info);
-        while (n.next != null) {
-            arr.add(n.next.info);
-            n = n.next;
+        Node list = myFirst;
+        //ArrayList<String> arr = new ArrayList<>();
+        //arr.add(n.info);
+        LinkStrand ls = new LinkStrand();
+        while (list != null) {
+            StringBuilder reverse = new StringBuilder(list.info);
+            String revNuc = reverse.reverse().toString();
+            Node revNode = new Node (revNuc);
+            ls.mySize += ls.myFirst.info.length();
+            ls.myFirst.next = ls.myFirst;
+            ls.myFirst =  revNode;
+            ls.myAppend++;
         }
-        Node list = null;
-
-        for (int i = arr.size() - 1; i >= 0; i--){
-
-            list = list.next;
-            StringBuilder rev = new StringBuilder(arr.get(i));
-            list = new Node (rev.reverse().toString());
-
-
-
-
-        }
+<<<<<<< HEAD
 
         return ;
 
@@ -84,8 +87,11 @@ public class LinkStrand implements IDnaStrand{
 
 
 
+=======
+        return ls;
+>>>>>>> 7e81830fc4eb0d9be1cefe86894b41334dbfa49e
     }
-
+// I LOVE ASTRACHAN
     @Override
     public int getAppendCount() {
         return myAppend;
@@ -93,21 +99,35 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public char charAt(int index) {
-        return 0;
+        if (index < 0 || (this.size() <= myIndex)) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (myIndex >= index) {
+            myIndex = 0;
+            myLocalIndex = 0;
+            myCurrent = myFirst;
+        }
+        while (index != myIndex ) {
+            myIndex ++;
+            myLocalIndex ++;
+            if (myCurrent.next != null && myCurrent.info.length() <= myLocalIndex ) {
+                myLocalIndex = 0;
+                myCurrent = myCurrent.next;
+            }
+        }
+
+        return myCurrent.info.charAt(myLocalIndex);
     }
 
-    public String toString(Node n) {
-        n = myFirst;
+    public String toString() {
+        Node n = myFirst;
         StringBuilder ret = new StringBuilder();
-        ret.append(n.info);
-        while ( n.next != null) {
-            ret.append(n.next.info);
+        while (n != null) {
+            ret.append(n.info);
             n = n.next;
         }
         return ret.toString();
     }
-
-    //Dmitri Morales
 
 
 }
