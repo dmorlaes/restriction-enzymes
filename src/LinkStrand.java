@@ -72,14 +72,40 @@ public class LinkStrand implements IDnaStrand {
             StringBuilder reverse = new StringBuilder(list.info);
             String revNuc = reverse.reverse().toString();
             Node revNode = new Node (revNuc);
-            ls.mySize += ls.myFirst.info.length();
-            ls.myFirst.next = ls.myFirst;
-            ls.myFirst =  revNode;
+            ls.mySize += revNode.info.length();
+            revNode.next = ls.myFirst;
+            ls.myFirst = revNode;
             ls.myAppend++;
+            list = list.next;
         }
         return ls;
 
     }
+
+    /**
+     * private void appendToFront(String dna)
+    {
+        Node guy = new Node(dna);
+        this.mySize += guy.info.length();
+        guy.next = myFirst;
+        myFirst = guy;
+    }
+    @Override
+    public IDnaStrand reverse()
+    {
+        Node guy = myFirst;
+        LinkStrand guy1 = new LinkStrand();
+        while (guy != null)
+        {
+            StringBuilder guy2 = new StringBuilder(guy.info);
+            String x = guy2.reverse().toString();
+            guy1.appendToFront(x);
+            guy = guy.next;
+        }
+        return guy1;
+    }
+
+     */
 
     @Override
     public int getAppendCount() {
