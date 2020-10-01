@@ -89,7 +89,7 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public char charAt(int index) {
-        if (index < 0 || (this.size() - 1 <= myIndex)) {
+        if (index < 0 || (this.size() < myIndex)) {
            throw new IndexOutOfBoundsException();
        }
         if (myIndex >= index) {
