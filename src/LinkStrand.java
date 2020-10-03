@@ -4,16 +4,26 @@
 //Ritvik Janamsetty
 
 public class LinkStrand implements IDnaStrand {
-
+    /**
+     * Initializes link strand
+     * @param s
+     */
     public LinkStrand(String s) {
         initialize(s);
     }
-
+    /**
+     * Initializes link strand
+     * no parameter and allows you to use "this"
+     *
+     */
     public LinkStrand() {
         this("");
 
     }
 
+    /**
+     * Creating the linkNode class here
+     */
     private class Node {
         String info;
         Node next;
@@ -32,12 +42,19 @@ public class LinkStrand implements IDnaStrand {
     private int myLocalIndex;
     private Node myCurrent;
 
-
+    /**
+     * overriden size() method
+     * @return mySize
+     */
     @Override
     public long size() {
         return mySize;
     }
 
+    /**
+     * initializes all instance variables
+     * @param source
+     */
     @Override
     public void initialize(String source) {
         myFirst = new Node(source);
@@ -50,11 +67,22 @@ public class LinkStrand implements IDnaStrand {
 
     }
 
+    /**
+     * Gets the source for the link strand
+     * @param source is data from which object constructed
+     * @return the link strand
+     */
     @Override
     public IDnaStrand getInstance(String source) {
         return new LinkStrand(source);
     }
 
+    /**
+     * Appending the node to the linkstrand
+     * @param dna
+     *            is the string appended to this strand
+     * @return  the newly appended linkstrand
+     */
     @Override
     public IDnaStrand append(String dna) {
         myLast.next = new Node(dna);
@@ -64,6 +92,10 @@ public class LinkStrand implements IDnaStrand {
         return this;
     }
 
+    /**
+     * Reverses the order of the linkstrand
+     * @return the reversed linkstrand
+     */
     @Override
     public IDnaStrand reverse() {
         Node list = myFirst;
@@ -82,11 +114,20 @@ public class LinkStrand implements IDnaStrand {
 
     }
 
+    /**
+     *
+     * @return the amount of times appended
+     */
     @Override
     public int getAppendCount() {
         return myAppend;
     }
 
+    /**
+     * Finds the char at the specific index called
+     * @param index specifies which character will be returned
+     * @return the char at the index "index"
+     */
     @Override
     public char charAt(int index) {
         if (index < 0 || (this.size() <= index)) {
@@ -109,6 +150,10 @@ public class LinkStrand implements IDnaStrand {
         return myCurrent.info.charAt(myLocalIndex);
     }
 
+    /**
+     * Creates a toString method for the linkStrand
+     * @return the string from the string builder
+     */
     public String toString() {
         Node n = myFirst;
         StringBuilder ret = new StringBuilder();
